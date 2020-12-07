@@ -1,0 +1,25 @@
+<form #updateForm=ngForm (ngSubmit)=updatePerson()>
+    <div>
+        Nom : <input type=text name=nom [(ngModel)]="currentPerson.nom" required #nom="ngModel">
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">
+        Le nom est obligatoire
+    </div>
+    <div>
+        Prénom : <input type=text name=prenom [(ngModel)]="currentPerson.prenom" required #prenom="ngModel">
+    </div>
+    <div [hidden]="prenom.valid || prenom.pristine">
+        Le prenom est obligatoire
+    </div>
+    <div>
+        <button [disabled]=!updateForm.valid>
+            Update
+        </button>
+
+        <!-- <button type="submit"
+        class="badge badge-success"
+        (click)="updatePerson()">button</button>-->
+    </div>
+    <div><p>{{ confirmationMessage }}</p></div>
+    <div><p><a class="badge badge-error" routerLink="/personnes">Liste de personnes</a></p></div>
+</form>

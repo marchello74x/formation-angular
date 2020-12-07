@@ -1,0 +1,141 @@
+
+<div style="text-align:center">
+    <h1>
+      welcome to {{ title }}!
+    </h1>
+  </div>
+  <a [routerLink]="['/adresse']" [queryParams]="{ codepostal: '77500', ville: 'chelles'}"> Adresse </a>
+<router-outlet></router-outlet>
+
+  <ul>
+    <li> Nom : {{ personne.nom }} </li>
+    <li> Prenom : {{ personne.prenom }} </li>
+  </ul>
+  
+  <ul>
+    <li> {{ tab[0] }} </li>
+    <li> {{ tab[1] }} </li>
+    <li> {{ tab[2] }} </li>
+    <li> {{ tab[3] }} </li>
+  </ul>
+  <p>{{ direBonjour() }}</p>
+  <p [textContent]=title></p>
+  
+  <ul>
+    <li *ngFor="let elt of tab; let i = index">
+      {{i}} : {{ elt }}
+    </li>
+  </ul>
+  
+  
+  <ul>
+    <li *ngIf="tab[0] % 2 != 0">
+      {{ tab[0] }} est impair
+    </li>
+  </ul>
+  
+  
+  <ul>
+    <li *ngIf="tab[0] % 2 != 0">
+      {{ tab[0] }} est impair
+    </li>
+  </ul>
+  
+  
+  <ul>
+    <li *ngFor="let elt of tab;">
+      <span *ngIf="elt % 2 != 0 else sinon">{{elt }} est impaire </span>
+      <ng-template #sinon>
+    <li>{{ elt }} est pair</li>
+    </ng-template>
+    </li>
+  </ul>
+  
+  <ul>
+    <ng-container *ngFor="let element of tab">
+      <li *ngIf="element % 2 != 0; else pairBlock">{{ element }} est impair</li>
+      <ng-template #pairBlock>
+        <li>{{ element }} est pair</li>
+      </ng-template>
+    </ng-container>
+  </ul>
+  
+  <ul>
+    <ng-container *ngFor="let elt of tab">
+      <li *ngIf="elt % 2 != 0; else sinon">
+        {{ elt }} est impair
+      </li>
+      <ng-template #sinon>
+        <li>
+          {{ elt }} est pair
+        </li>
+      </ng-template>
+    </ng-container>
+  </ul>
+  
+  
+  <ul>
+    <ng-container *ngFor="let elt of tab">
+      <ng-container [ngSwitch]="true">
+        <li *ngSwitchCase="elt >= 0 && elt < 10">
+          {{ elt }} : échec
+        </li>
+        <li *ngSwitchCase="elt >= 10 && elt < 13">
+          {{ elt }} : moyen
+        </li>
+        <li *ngSwitchCase="elt >= 13 && elt < 15">
+          {{ elt }} : bien
+        </li>
+        <li *ngSwitchCase="elt >= 15">
+          {{ elt }} : très bien
+        </li>
+        <li *ngSwitchDefault>
+          autre
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+  
+  <p [ngStyle]="{backgroundColor: couleur}">{{ nom }}</p>
+  
+  <p [ngStyle]="{color: getColor(), backgroundColor:
+    getBackgroundColor()}">
+    {{ nom }}
+  </p>
+
+<ul>
+  <ng-container *ngFor="let elt of personnes; let i = index">
+    <li *ngIf="i % 2 != 0; else sinon">
+      <span [ngClass]="{'rouge': true}">
+        {{ elt.nom }} {{ elt.prenom }} aaaaaa
+      </span>
+    </li>
+    <ng-template #sinon>
+      <li>
+        <span [ngClass]="{'bleu': true}">
+          {{ elt.nom}} {{ elt.prenom }}
+        </span>
+      </li>
+    </ng-template>
+  </ng-container>
+</ul>
+
+
+
+  <!-- 
+  <ul>
+    <ng-container *ngFor="let elt of personnes; let isEven = even
+    ; let isOdd = odd">
+      <li [ngClass]="{’rouge’: isEven,’bleu’: isOdd}">
+        {{ elt.nom }} {{ elt.prenom }}
+      </li>
+    </ng-container>
+  </ul>
+  <ul>
+    <ng-container *ngFor="let elt of personnes; let i = index;">
+      <li [ngClass]="i % 2 != 0 ? ’rouge’ : ’bleu’">
+        {{ elt.nom + " " + elt.prenom }}
+      </li>
+    </ng-container>
+  </ul>
+  -->

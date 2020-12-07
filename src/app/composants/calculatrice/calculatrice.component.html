@@ -1,0 +1,27 @@
+<div class="container">
+    <h3 class="">CALCULATRICE</h3>
+    <br>
+    <div class="">
+        <div class="">
+            <div class="form-group">
+                <label for="num1">Num 1:</label>
+                <input class="form-control" [(ngModel)]='num1' type="number" name="num1">
+            </div>
+            <div class="form-group">
+                <label for="num2">Num 2:</label>
+                <input class="form-control" [(ngModel)]='num2' type="number" name="num2">
+            </div>
+        </div>
+        <div class="form-group">
+            <br>
+            <button class="btn btn-default" style="font-weight: bold;" (click)='sum()'> SUM </button>
+            <button class="btn btn-default" style="font-weight: bold;" (click)='diff()'> DIFF </button>
+            <button class="btn btn-default" style="font-weight: bold;" (click)='mult()'> MULT </button>
+            <button class="btn btn-default" style="font-weight: bold;" (click)='div()'> DIV </button>
+            <br><br><br>
+        </div>
+        <div class="form-group">
+            <h4>Resultat: {{res}}</h4>
+        </div>
+    </div>
+</div>
